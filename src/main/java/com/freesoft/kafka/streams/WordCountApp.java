@@ -28,6 +28,8 @@ public class WordCountApp {
 
         KafkaStreams streams = new KafkaStreams(kStreamBuilder, config);
         streams.start();
+        
+        Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
     }
 
     private static Properties setUpKafkaConfigurations() {
